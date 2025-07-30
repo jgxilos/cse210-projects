@@ -10,13 +10,13 @@ public class Customer
         _address = address;
     }
 
-    // Getter for name (if needed elsewhere, though not strictly required by spec)
+    // Getter for name
     public string GetName()
     {
         return _name;
     }
 
-    // Getter for address (if needed elsewhere, though not strictly required by spec)
+    // Getter for address
     public Address GetAddress()
     {
         return _address;
