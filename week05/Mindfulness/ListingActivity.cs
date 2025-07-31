@@ -33,7 +33,7 @@ namespace Mindfulness
             Console.WriteLine("\nBegin listing items. Type each item and press enter.");
             while (DateTime.Now < endTime)
             {
-                Console.Write("\r> ");  // Mostrar el símbolo > antes de cada entrada
+                Console.Write("\r> ");  // Show the > symbol before each entry
                 string item = Console.ReadLine();
                 if (string.IsNullOrEmpty(item)) break;
                 _count++;
