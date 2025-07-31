@@ -20,19 +20,20 @@ namespace Mindfulness
             Console.WriteLine($"Welcome to the {_name} Activity.\n\n{_description}\n");
             _duration = GetDurationFromUser();
             Console.WriteLine("\nPrepare to begin...");
-            ShowCountDown(5);
+            ShowSpinner(5);  //Show spinner animation for 5 seconds
         }
 
         public virtual void DisplayEndingMessage()
         {
             Console.WriteLine($"\n\nYou've completed the {_name} Activity for {_duration} seconds!");
-            ShowSpinner(3);
             Console.WriteLine("\nGreat job! Take a moment to reflect on your experience.");
-            ShowCountDown(3);
+            ShowSpinner(5);  // Show spinner animation for 5 seconds before returning to the menu
         }
 
-        // Método común para todas las actividades
-        public virtual void Run() { }
+        public virtual void Run()
+        {
+            // Default implementation (empty)
+        }
 
         protected int GetDurationFromUser()
         {
@@ -42,27 +43,27 @@ namespace Mindfulness
 
         protected void ShowSpinner(int seconds)
         {
-            string[] spinner = { "|", "/", "-", "\\" };
+            string[] spinner = { "/", "-", "\\", "|" };  // Sequence to create the spinning effect
             DateTime endTime = DateTime.Now.AddSeconds(seconds);
             while (DateTime.Now < endTime)
             {
                 foreach (string symbol in spinner)
                 {
-                    Console.Write(symbol);
+                    Console.Write($"\r{symbol}");  // Use \r to overwrite the same line
                     Thread.Sleep(250);
-                    Console.Write("\b \b");
                 }
             }
+            Console.Write("\r ");  // Clean up the line after the animation
         }
 
         protected void ShowCountDown(int seconds)
         {
             for (int i = seconds; i >= 0; i--)
             {
-                Console.Write(i.ToString());
+                Console.Write($"\r{i}");  // Use \r to overwrite the same line
                 Thread.Sleep(1000);
-                Console.Write("\b \b");
             }
+            Console.Write("\r ");  // Clear the line after the countdown
         }
     }
 }

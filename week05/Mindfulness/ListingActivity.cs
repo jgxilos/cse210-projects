@@ -11,7 +11,8 @@ namespace Mindfulness
             "Who are people that you appreciate?",
             "What are personal strengths of yours?",
             "Who are people that you have helped this week?",
-            "When have you felt the Holy Ghost this month?"
+            "When have you felt the Holy Ghost this month?",
+            "Who are some of your personal heroes?"
         };
 
         private int _count = 0;
@@ -29,13 +30,16 @@ namespace Mindfulness
             ShowCountDown(5);
 
             DateTime endTime = DateTime.Now.AddSeconds(_duration);
-            Console.WriteLine("\nBegin listing items. Press enter after each item.");
+            Console.WriteLine("\nBegin listing items. Type each item and press enter.");
             while (DateTime.Now < endTime)
             {
+                Console.Write("\r> ");  // Mostrar el símbolo > antes de cada entrada
                 string item = Console.ReadLine();
                 if (string.IsNullOrEmpty(item)) break;
                 _count++;
             }
+            
+            Console.WriteLine($"\nYou listed {_count} items!");
             DisplayEndingMessage();
         }
 
